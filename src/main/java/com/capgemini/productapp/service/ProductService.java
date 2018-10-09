@@ -1,5 +1,7 @@
 package com.capgemini.productapp.service;
 
+import java.util.List;
+
 import com.capgemini.productapp.entity.Product;
 import com.capgemini.productapp.exception.ProductNotFoundException;
 
@@ -13,9 +15,13 @@ public interface ProductService {
 
 	public void deleteProduct(Product product);
 	
-/*	public Product findProductByName(String productName);
+	/*public List<Product> findProductBycategory(String productCategory); */
 	
-	public Product findProductBycategory(String productCategory); */
+	public List<Product> findProductBycategoryandPrice(String productCategory,double from,double to); 
+	
+
+	
+	
 
 }
 

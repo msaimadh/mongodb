@@ -1,5 +1,7 @@
 package com.capgemini.productapp.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.productapp.entity.Product;
@@ -49,6 +52,15 @@ public class ProductController {
 			// logged the exception
 		}
 		return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/products/{productCategory,productPrice}")
+	public ResponseEntity<Product> findProductBycategoryandPrice
+	         (@RequestParam String productCategory, double from,double to){
+	List<Product> productFromDb = productService.findProductBycategoryandPrice(productCategory,from,to);
+	System.out.println(productFromDb);
+	return new ResponseEntity<Product>(HttpStatus.OK);
+	/*return new ResponseEntity<List<Product>>(productFromDb, HttpStatus.OK);*/
 	}
 
 	@DeleteMapping("/products/{productId}")
